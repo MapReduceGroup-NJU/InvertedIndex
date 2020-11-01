@@ -7,6 +7,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 public class InvertedIndexer {
     public static void main(String[] args)
@@ -16,6 +17,7 @@ public class InvertedIndexer {
             Job job = new Job(conf, "invert index");
             job.setJarByClass(InvertedIndexer.class);
             job.setInputFormatClass(TextInputFormat.class);
+            job.setOutputFormatClass(TextOutputFormat.class);
             job.setMapperClass(InvertedIndexMapper.class);
             job.setReducerClass(InvertedIndexReducer.class);
             job.setOutputKeyClass(Text.class);
